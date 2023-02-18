@@ -9,6 +9,8 @@ app = func.FunctionApp()
 @app.function_name(name="GetGames")
 @app.route(route="games", auth_level=func.AuthLevel.ANONYMOUS)
 def get_games(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info("Returning games")
+
     return func.HttpResponse(
         json.dumps(db.get_games()),
         mimetype="application/json"
@@ -17,6 +19,8 @@ def get_games(req: func.HttpRequest) -> func.HttpResponse:
 @app.function_name(name="GetGroups")
 @app.route(route="groups", auth_level=func.AuthLevel.ANONYMOUS)
 def get_groups(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info("Returning groups")
+
     return func.HttpResponse(
         json.dumps(db.get_groups()),
         mimetype="application/json"
@@ -25,6 +29,8 @@ def get_groups(req: func.HttpRequest) -> func.HttpResponse:
 @app.function_name(name="GetLinkTypes")
 @app.route(route="linkTypes", auth_level=func.AuthLevel.ANONYMOUS)
 def get_link_types(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info("Returning link types")
+
     return func.HttpResponse(
         json.dumps(db.get_link_types()),
         mimetype="application/json"
@@ -33,8 +39,30 @@ def get_link_types(req: func.HttpRequest) -> func.HttpResponse:
 @app.function_name(name="GetPlayers")
 @app.route(route="players", auth_level=func.AuthLevel.ANONYMOUS)
 def get_players(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info("Returning players")
+
     return func.HttpResponse(
         json.dumps(db.get_players()),
+        mimetype="application/json"
+    )
+
+@app.function_name(name="GetResults")
+@app.route(route="results", auth_level=func.AuthLevel.ANONYMOUS)
+def get_results(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info("Returning results")
+
+    return func.HttpResponse(
+        json.dumps(db.get_results()),
+        mimetype="application/json"
+    )
+
+@app.function_name(name="GetWinMethods")
+@app.route(route="winMethods", auth_level=func.AuthLevel.ANONYMOUS)
+def get_win_methods(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info("Returning win methods")
+
+    return func.HttpResponse(
+        json.dumps(db.get_win_methods()),
         mimetype="application/json"
     )
 
